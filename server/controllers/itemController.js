@@ -188,3 +188,18 @@ exports.delete = (req, res) => {
           });
     });
 }
+
+exports.deleteHistorico = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if(err) throw err; // Falha na conexão
+        console.log('Conectado com o ID' + connection.threadId);
+        connection.query('DELETE FROM item WHERE id = ?', [req.params.id], (err, rows) => {
+          if(!err) {
+            res.redirect('/viewhistorico');
+          } else {
+            console.log(err);
+          }
+          console.log('The data from user table: \n', rows);
+        });
+    });
+}

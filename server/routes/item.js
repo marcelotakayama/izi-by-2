@@ -12,6 +12,7 @@ router.get('/edititem/:id', itemController.edit)
 router.post('/edititem/:id', itemController.update)
 
 router.get('/viewhistorico', itemController.viewhistorico)
+router.get('/viewhistorico/:id', itemController.deleteHistorico)
 router.get('/buyitem/:id', itemController.buy)
 
 router.get('/:id', itemController.delete)
