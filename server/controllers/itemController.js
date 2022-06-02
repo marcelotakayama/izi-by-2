@@ -35,7 +35,7 @@ exports.find = (req, res) => {
 
         let searchTerm = req.body.search;
 
-        connection.query('SELECT * FROM item WHERE nome LIKE ? OR quantidade LIKE ?', ['%' + searchTerm + '%', '%' + searchTerm + '%'], (err, rows) => {
+        connection.query('SELECT * FROM item WHERE nome LIKE ? OR quantidade LIKE ? OR ID like ?', ['%' + searchTerm + '%', '%' + searchTerm + '%', '%' + searchTerm + '%'], (err, rows) => {
             connection.release();
 
             if(!err){
@@ -106,8 +106,6 @@ exports.update = (req, res) => {
             connection.release();
 
             if(!err){
-
-
                 pool.getConnection((err, connection) => {
                     if(err) throw err; // Falha na conexão
                     console.log('Conectado com o ID' + connection.threadId);
@@ -167,7 +165,7 @@ exports.buy = (req, res) => {
             } else {
               console.log(err);
             }
-            console.log('The data from beer table are: \n', rows);
+            console.log('Dados: \n', rows);
           })
     });
 }
@@ -184,7 +182,7 @@ exports.delete = (req, res) => {
             } else {
               console.log(err);
             }
-            console.log('The data from beer table are: \n', rows);
+            console.log('Dados: \n', rows);
           });
     });
 }
@@ -199,7 +197,7 @@ exports.deleteHistorico = (req, res) => {
           } else {
             console.log(err);
           }
-          console.log('The data from user table: \n', rows);
+          console.log('Dados: \n', rows);
         });
     });
 }
